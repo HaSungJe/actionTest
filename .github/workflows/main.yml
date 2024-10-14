@@ -1,0 +1,25 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Run SSH commands
+      uses: appleboy/ssh-action@v0.1.3
+      with:
+        host: ${{ vars.MAIN_SERVER_HOST }}
+        username: ${{ vars.SERVER_USER }}
+        key: ${{ vars.SERVER_SSH_KEY }}
+        script: |
+          cd /home/daylog/actionTest
+          git pull origin main
+        debug: true  # 디버그 모드 활성화
