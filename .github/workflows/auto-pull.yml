@@ -1,0 +1,20 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: [self-hosted]  # self-hosted 러너 사용
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Pull latest changes
+      run: |
+        set -x  # Debug mode
+        cd /home/daylog/actionTest
+        git pull origin main
