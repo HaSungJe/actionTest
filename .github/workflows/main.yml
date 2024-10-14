@@ -18,7 +18,8 @@ jobs:
       with:
         host: ${{ vars.MAIN_SERVER_HOST }}
         username: ${{ vars.SERVER_USER }}
-        key: ${{ vars.SERVER_SSH_KEY }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        port: 22
         script: |
           cd /home/daylog/actionTest
           git pull origin main
